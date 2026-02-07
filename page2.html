@@ -15,7 +15,6 @@ body {
     font-family: 'Arial', sans-serif;
 }
 
-/* CARD */
 .card {
     background: #fff;
     width: 90%;
@@ -23,18 +22,17 @@ body {
     padding: 25px;
     border-radius: 25px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+    text-align: center;
 }
 
-/* TITLE */
 h2 {
-    text-align: center;
     color: #c9184a;
     margin-bottom: 20px;
 }
 
-/* QUESTIONS */
 .question {
     margin-bottom: 15px;
+    text-align: left;
 }
 
 label {
@@ -52,24 +50,35 @@ input {
     font-size: 16px;
 }
 
-/* BUTTON */
+/* BUTTONS */
 button {
     width: 100%;
     margin-top: 15px;
-    padding: 12px;
+    padding: 14px;
     border-radius: 30px;
     border: none;
-    background: #e0c6cb;
-    color: white;
     font-size: 18px;
     cursor: pointer;
 }
 
-/* ERROR */
-#error {
-    text-align: center;
-    color: red;
-    margin-top: 10px;
+#continueBtn {
+    background: #ff4d6d;
+    color: white;
+}
+
+#loveBtn {
+    background: #c9184a;
+    color: white;
+    display: none;
+}
+
+/* MESSAGE */
+#message {
+    display: none;
+    margin-top: 20px;
+    font-size: 16px;
+    color: #c9184a;
+    font-weight: bold;
 }
 </style>
 </head>
@@ -77,38 +86,50 @@ button {
 <body>
 
 <div class="card">
-    <form action="https://formsubmit.co/rajasreeraju123@gmail.com" method="POST">
+    <h2>Just for you, Vaishuuu 💖</h2>
 
-    <h2>Just for you, Vaishuuu!!!! 💖</h2>
+    <!-- QUESTIONS -->
+    <div id="questions">
+        <div class="question">
+            <label>What do you love most about me? ❤️</label>
+            <input type="text">
+        </div>
 
-    <div class="question">
-        <label>What do you love most about me? ❤️</label>
-        <input type="text" name="Love_Most" required>
+        <div class="question">
+            <label>Your favorite memory with me 🌸</label>
+            <input type="text">
+        </div>
+
+        <div class="question">
+            <label>One thing you want to tell me 💍</label>
+            <input type="text">
+        </div>
+
+        <button id="continueBtn" onclick="showMessage()">Continue 💕</button>
     </div>
 
-    <div class="question">
-        <label>Your favorite memory with me 🌸</label>
-        <input type="text" name="Favorite_Memory" required>
+    <!-- MESSAGE -->
+    <div id="message">
+        📸 Take a photo of your reply <br>
+        and send it to your love… <br>
+        ow!!!that’s me 💖
     </div>
 
-    <div class="question">
-        <label>What I need to change so you love me more 💍</label>
-        <input type="text" name="Promise" required>
-    </div>
-
-    <!-- Hidden settings -->
-    <input type="hidden" name="_subject" value="💖 Valentine Answers from Vaishak">
-    <input type="hidden" name="_next" value="https://rajasreeraj.github.io/love_letter/final.html">
-
-    <input type="hidden" name="_captcha" value="false">
-
-    <button type="submit">Continue 💕</button>
-
-</form>
-
+    <!-- LOVE BUTTON -->
+    <button id="loveBtn" onclick="goFinal()">Love You 💖</button>
 </div>
 
+<script>
+function showMessage() {
+    document.getElementById("questions").style.display = "none";
+    document.getElementById("message").style.display = "block";
+    document.getElementById("loveBtn").style.display = "block";
+}
 
+function goFinal() {
+    window.location.href = "final.html";
+}
+</script>
 
 </body>
 </html>
