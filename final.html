@@ -55,8 +55,8 @@ body {
 /* POPPING PHOTOS */
 .photo {
     position: absolute;
-    width: 180px;
-    height: 200px;
+    width: 200px;
+    height: 250px;
     object-fit: cover;
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
@@ -203,7 +203,7 @@ function popPhoto() {
     setTimeout(() => img.remove(), 2500);
 }
 
-setInterval(popPhoto, 900);
+setInterval(popPhoto, 1000);
 
 function popHeart() {
     const heart = document.createElement("div");
