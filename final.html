@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My Love Letter 💖</title>
+
+<style>
+body {
+    margin: 0;
+    background: linear-gradient(#ffe5ec, #fff0f3);
+    font-family: 'Georgia', serif;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CENTER LETTER */
+.letter {
+    background: #fffaf0;
+    width: 85%;
+    max-width: 380px;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    line-height: 1.9;
+    z-index: 2;
+    position: relative;
+}
+
+.letter h2 {
+    text-align: center;
+    color: #c9184a;
+}
+
+.letter p {
+    color: #4a001f;
+    font-size: 16px;
+}
+
+/* PHOTO POPPING */
+.photo {
+    position: absolute;
+    width: 180px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    animation: popFade 2.5s ease forwards;
+    z-index: 3;
+}
+.heart {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: #ff4d6d;
+    transform: rotate(45deg);
+    animation: floatHeart 4s linear forwards;
+    opacity: 0.8;
+    z-index: 0;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    width: 18px;
+    height: 18px;
+    background: #ff4d6d;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.heart::before {
+    top: -9px;
+    left: 0;
+}
+
+.heart::after {
+    left: -9px;
+    top: 0;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: rotate(45deg) scale(0.6);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateY(-120px) rotate(45deg) scale(1.1);
+        opacity: 0;
+    }
+}
+
+
+/* POP + FADE */
+@keyframes popFade {
+    0% { transform: scale(0.5); opacity: 0; }
+    20% { transform: scale(1); opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+}
+.music-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #c9184a;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 25px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="letter">
+    <h2>My Dearest Vaishuu ❤️</h2>
+
+    <p>
+   From the moment you came into my life, everything changed in the most beautiful way. 
+   You are my comfort, my strength, and my happiest place. 
+   You know how much I love you… Every time we fight, all I ever need is your time 
+    
+    </p>
+
+    <p>
+    I wish for a life where being together feels like home.
+     Loving you is effortless, and being loved by you is my greatest blessing.
+     Wherever life takes us, I want my hand in yours — always.
+    </p>
+
+    <p>
+    Forever yours,<br>
+    ❤️ Your Sree
+    </p>
+</div>
+
+<script>
+const images = [
+    "images/1.jpeg",
+    "images/2.jpeg",
+    "images/3.jpeg",
+    "images/4.jpeg",
+    "images/5.jpeg",
+    "images/6.jpeg",
+    "images/7.jpeg",
+    "images/8.jpeg",
+    "images/9.jpeg",
+    "images/10.jpeg",
+    "images/11.jpeg",
+    "images/12.jpeg",
+    "images/13.jpeg",
+    "images/14.jpeg",
+    "images/15.jpeg",
+    "images/16.jpeg",
+    "images/17.jpeg",
+    "images/18.jpeg",
+    "images/19.jpeg",
+    "images/20.jpeg",
+    "images/21.jpeg",
+    "images/22.jpeg",
+    "images/23.jpeg",
+    "images/24.jpeg",
+    "images/25.jpeg",
+    "images/26.jpeg",
+    "images/27.jpeg",
+    "images/28.jpeg",
+    "images/29.jpeg",
+    "images/30.jpeg",
+
+];
+function popHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.top = window.innerHeight + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 4000);
+}
+
+// Keep hearts floating 💕
+setInterval(popHeart, 500);
+
+
+const letter = document.querySelector(".letter");
+
+function popPhoto() {
+    const img = document.createElement("img");
+    img.src = images[Math.floor(Math.random() * images.length)];
+    img.className = "photo";
+
+    const rect = letter.getBoundingClientRect();
+
+    let x, y;
+    do {
+        x = Math.random() * (window.innerWidth - 150);
+        y = Math.random() * (window.innerHeight - 180);
+    } while (
+        x > rect.left - 120 &&
+        x < rect.right &&
+        y > rect.top - 120 &&
+        y < rect.bottom
+    );
+
+    img.style.left = x + "px";
+    img.style.top = y + "px";
+
+    document.body.appendChild(img);
+
+    setTimeout(() => img.remove(), 2500);
+}
+setInterval(popPhoto, 900);
+
+function playSong() {
+    const song = document.getElementById("loveSong");
+    song.play();
+}
+
+// KEEP POPPING
+setInterval(popPhoto, 900);
+</script>
+ <audio id="loveSong" loop>
+    <source src="images/love.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" onclick="playSong()">💖 Play our song</button>
+
+</body>
+</html>
