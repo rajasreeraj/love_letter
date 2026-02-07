@@ -16,7 +16,7 @@ body {
     align-items: center;
 }
 
-/* CENTER LETTER */
+/* LETTER BOX */
 .letter {
     background: #fffaf0;
     width: 85%;
@@ -27,10 +27,10 @@ body {
     line-height: 1.9;
     z-index: 2;
     position: relative;
+    text-align: center;
 }
 
 .letter h2 {
-    text-align: center;
     color: #c9184a;
 }
 
@@ -39,7 +39,20 @@ body {
     font-size: 16px;
 }
 
-/* PHOTO POPPING */
+/* MUSIC BUTTON INSIDE LETTER */
+.music-btn {
+    margin-top: 15px;
+    background: #c9184a;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+}
+
+/* POPPING PHOTOS */
 .photo {
     position: absolute;
     width: 180px;
@@ -50,6 +63,8 @@ body {
     animation: popFade 2.5s ease forwards;
     z-index: 3;
 }
+
+/* FLOATING HEARTS */
 .heart {
     position: absolute;
     width: 18px;
@@ -82,41 +97,19 @@ body {
 }
 
 @keyframes floatHeart {
-    0% {
-        transform: rotate(45deg) scale(0.6);
-        opacity: 0;
-    }
-    20% {
-        opacity: 0.9;
-    }
+    0% { opacity: 0; }
+    20% { opacity: 0.9; }
     100% {
-        transform: translateY(-120px) rotate(45deg) scale(1.1);
+        transform: translateY(-120px) rotate(45deg);
         opacity: 0;
     }
 }
 
-
-/* POP + FADE */
 @keyframes popFade {
     0% { transform: scale(0.5); opacity: 0; }
     20% { transform: scale(1); opacity: 1; }
-    80% { opacity: 1; }
     100% { opacity: 0; }
 }
-.music-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #c9184a;
-    color: white;
-    border: none;
-    padding: 12px 18px;
-    border-radius: 25px;
-    font-size: 14px;
-    cursor: pointer;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-}
-
 </style>
 </head>
 
@@ -126,27 +119,32 @@ body {
     <h2>My Dearest Vaishuu ❤️</h2>
 
     <p>
-   From the moment you came into my life, everything changed in the most beautiful way. 
-   You are my comfort, my strength, and my happiest place. 
-   You know how much I love you… Every time we fight, all I ever need is your time 
-    
+        From the moment you came into my life, everything changed in the most beautiful way.
+        You are my comfort, my strength, and my happiest place.
+        Every time we fight, all I ever need is your time.
     </p>
 
     <p>
-    I wish for a life where being together feels like home.
-     Loving you is effortless, and being loved by you is my greatest blessing.
-     Wherever life takes us, I want my hand in yours — always.
+        Loving you is effortless, and being loved by you is my greatest blessing.
+        Wherever life takes us, I want my hand in yours — always.
     </p>
 
     <p>
-    Forever yours,<br>
-    ❤️ Your Sree
+        Forever yours,<br>
+        ❤️ Your Sree
     </p>
+
+    <!-- 🎵 BUTTON MOVED INSIDE LETTER -->
+    <button class="music-btn" onclick="playSong()">💖 Play our song</button>
 </div>
+
+<audio id="loveSong" loop>
+    <source src="images/love.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 const images = [
-    "images/1.jpeg",
+     "images/1.jpeg",
     "images/2.jpeg",
     "images/3.jpeg",
     "images/4.jpeg",
@@ -176,25 +174,7 @@ const images = [
     "images/28.jpeg",
     "images/29.jpeg",
     "images/30.jpeg",
-
 ];
-function popHeart() {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-
-    heart.style.left = Math.random() * window.innerWidth + "px";
-    heart.style.top = window.innerHeight + "px";
-
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 4000);
-}
-
-// Keep hearts floating 💕
-setInterval(popHeart, 500);
-
 
 const letter = document.querySelector(".letter");
 
@@ -204,11 +184,11 @@ function popPhoto() {
     img.className = "photo";
 
     const rect = letter.getBoundingClientRect();
-
     let x, y;
+
     do {
-        x = Math.random() * (window.innerWidth - 150);
-        y = Math.random() * (window.innerHeight - 180);
+        x = Math.random() * (window.innerWidth - 180);
+        y = Math.random() * (window.innerHeight - 200);
     } while (
         x > rect.left - 120 &&
         x < rect.right &&
@@ -218,26 +198,28 @@ function popPhoto() {
 
     img.style.left = x + "px";
     img.style.top = y + "px";
-
     document.body.appendChild(img);
 
     setTimeout(() => img.remove(), 2500);
 }
+
 setInterval(popPhoto, 900);
 
-function playSong() {
-    const song = document.getElementById("loveSong");
-    song.play();
+function popHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.top = window.innerHeight + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 4000);
 }
 
-// KEEP POPPING
-setInterval(popPhoto, 900);
-</script>
- <audio id="loveSong" loop>
-    <source src="images/love.mp3" type="audio/mpeg">
-</audio>
+setInterval(popHeart, 500);
 
-<button class="music-btn" onclick="playSong()">💖 Play our song</button>
+function playSong() {
+    document.getElementById("loveSong").play();
+}
+</script>
 
 </body>
 </html>
